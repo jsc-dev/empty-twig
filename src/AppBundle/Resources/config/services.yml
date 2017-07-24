@@ -1,0 +1,41 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+
+    # Example custom templating helper
+    # app.templating.helper.foobar:
+    #    class: AppBundle\Templating\Helper\Example
+    #    tags:
+    #        - { name: templating.helper, alias: fooBar }
+
+    # auto-register all controllers as services
+    AppBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    #
+    # TEMPLATING
+    #
+
+    website_demo.area.brick.blockquote:
+        class: AppBundle\Document\Areabrick\Blockquote
+        tags:
+            - { name: pimcore.area.brick, id: blockquote }
+
+    website_demo.language_switcher:
+        class: AppBundle\Templating\LanguageSwitcher
+        arguments: ['@pimcore.document_service']
+
+    # adds uniqid function to twig
+    website_demo.twig.uniqid_extension:
+        class: AppBundle\Twig\UniqidExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+
