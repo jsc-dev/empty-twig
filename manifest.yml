@@ -1,0 +1,10 @@
+name: Empty (Twig)
+files:
+    add:
+        - app/Resources/views
+        - src/AppBundle
+        - var/classes
+        - var/config/*
+        - web/static
+        - web/var/assets
+
